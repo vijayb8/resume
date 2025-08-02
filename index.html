@@ -19,7 +19,24 @@
         }
         .section-title::after {
             content: '';
-            @apply absolute left-0 bottom-[-10px] w-16 h-1 bg-sky-500 rounded-full;
+            @apply absolute left-1/2 -translate-x-1/2 bottom-[-10px] w-16 h-1 bg-sky-500 rounded-full;
+        }
+        /* New Timeline Styles */
+        .timeline-item-container {
+            @apply relative mb-8 md:mb-0;
+        }
+        .timeline-content {
+            @apply bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300;
+        }
+        .timeline-dot {
+            @apply absolute w-5 h-5 bg-sky-500 rounded-full border-4 border-white;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 1rem;
+        }
+        .timeline-arrow {
+            @apply absolute w-4 h-4 bg-white transform rotate-45;
+            top: 1.25rem;
         }
     </style>
 </head>
@@ -67,8 +84,8 @@
 
         <!-- About Section -->
         <section id="about" class="py-16">
-            <h3 class="section-title">About Me</h3>
-            <div class="grid md:grid-cols-3 gap-8">
+            <h3 class="section-title text-center">About Me</h3>
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <div class="md:col-span-2 text-lg leading-relaxed">
                     <p class="mb-4">I am a seasoned backend developer with extensive experience in Go, Java, and Python. My expertise lies in designing and implementing robust, scalable systems, particularly with microservices and RESTful APIs. I thrive in agile environments, delivering high-quality software under tight constraints.</p>
                     <p class="mb-4">I have a proven track record of working with container-based architectures using Docker and Kubernetes, alongside CI/CD pipelines. I'm comfortable creating detailed design documents and prototypes and have experience mentoring fellow developers. My goal is to leverage my skills to contribute to innovative projects and collaborative teams.</p>
@@ -87,71 +104,128 @@
         <!-- Experience Section -->
         <section id="experience" class="py-16 bg-slate-100 -mx-6 px-6">
             <div class="container mx-auto">
-                <h3 class="section-title">Work Experience</h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <p class="font-semibold text-sky-600">April 2024 - Present</p>
-                        <h4 class="text-xl font-bold text-slate-800 mt-1">Cloud Engineer</h4>
-                        <p class="text-md font-medium text-slate-600 mb-2">Ads-Tec GmbH, Germany</p>
-                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                            <li>Collaborated with data science team to create and manage APIs for EV chargers.</li>
-                            <li>Engaged in R&D to design and architect a robust data science pipeline.</li>
-                            <li>Engineered data pipelines using Azure Data Factory, Databricks, and Delta Lake.</li>
-                            <li>Mentored backend developers within the team.</li>
-                        </ul>
+                <h3 class="section-title text-center">Work Experience</h3>
+                <div class="relative mt-12">
+                    <!-- The vertical line -->
+                    <div class="hidden md:block absolute top-0 bottom-0 left-1/2 w-0.5 bg-slate-300"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="timeline-item-container md:grid md:grid-cols-2">
+                        <div></div> <!-- Empty column for spacing -->
+                        <div class="md:pl-8 relative">
+                             <div class="timeline-dot hidden md:block"></div>
+                             <div class="timeline-arrow hidden md:block" style="left: -0.5rem;"></div>
+                            <div class="timeline-content">
+                                <p class="font-semibold text-sky-600">April 2024 - Present</p>
+                                <h4 class="text-xl font-bold text-slate-800 mt-1">Cloud Engineer</h4>
+                                <p class="text-md font-medium text-slate-600 mb-2">Ads-Tec GmbH, Germany</p>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Collaborated with data science team to create and manage APIs for EV chargers.</li>
+                                    <li>Engineered data pipelines using Azure Data Factory, Databricks, and Delta Lake.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <p class="font-semibold text-sky-600">October 2022 - March 2024</p>
-                        <h4 class="text-xl font-bold text-slate-800 mt-1">Senior Software Developer</h4>
-                        <p class="text-md font-medium text-slate-600 mb-2">Aroundhome Gmbh, Germany</p>
-                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                            <li>Handled the migration of legacy services from Ruby to Go.</li>
-                        </ul>
+
+                    <div class="timeline-item-container md:grid md:grid-cols-2">
+                        <div class="md:pr-8 md:text-right relative">
+                            <div class="timeline-dot hidden md:block"></div>
+                            <div class="timeline-arrow hidden md:block" style="right: -0.5rem;"></div>
+                            <div class="timeline-content text-left">
+                                <p class="font-semibold text-sky-600">October 2022 - March 2024</p>
+                                <h4 class="text-xl font-bold text-slate-800 mt-1">Senior Software Developer</h4>
+                                <p class="text-md font-medium text-slate-600 mb-2">Aroundhome Gmbh, Germany</p>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Handled the migration of legacy services from Ruby to Go.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div></div> <!-- Empty column -->
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <p class="font-semibold text-sky-600">June 2021 - October 2022</p>
-                        <h4 class="text-xl font-bold text-slate-800 mt-1">Software Developer</h4>
-                        <p class="text-md font-medium text-slate-600 mb-2">Harvey Nash Gmbh (Client: Mercedes Benz Technical Innovation GmbH)</p>
-                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                            <li>Developed a new security authentication and authorization system for next-gen Mercedes Benz cars.</li>
-                        </ul>
+
+                    <div class="timeline-item-container md:grid md:grid-cols-2">
+                        <div></div> <!-- Empty column -->
+                        <div class="md:pl-8 relative">
+                            <div class="timeline-dot hidden md:block"></div>
+                            <div class="timeline-arrow hidden md:block" style="left: -0.5rem;"></div>
+                            <div class="timeline-content">
+                                <p class="font-semibold text-sky-600">June 2021 - October 2022</p>
+                                <h4 class="text-xl font-bold text-slate-800 mt-1">Software Developer</h4>
+                                <p class="text-md font-medium text-slate-600 mb-2">Harvey Nash Gmbh (Client: Mercedes Benz)</p>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Developed a new security authentication and authorization system for next-gen Mercedes Benz cars.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <p class="font-semibold text-sky-600">September 2019 - May 2021</p>
-                        <h4 class="text-xl font-bold text-slate-800 mt-1">Senior Golang Developer</h4>
-                        <p class="text-md font-medium text-slate-600 mb-2">McMakler Gmbh, Germany</p>
-                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                            <li>Developed new microservices for new feature sets in Go.</li>
-                            <li>Participated in architecture and tech discussions for new initiatives.</li>
-                            <li>Implemented unit and integration tests to achieve optimum test coverage.</li>
-                        </ul>
+
+                    <div class="timeline-item-container md:grid md:grid-cols-2">
+                        <div class="md:pr-8 md:text-right relative">
+                            <div class="timeline-dot hidden md:block"></div>
+                            <div class="timeline-arrow hidden md:block" style="right: -0.5rem;"></div>
+                            <div class="timeline-content text-left">
+                                <p class="font-semibold text-sky-600">September 2019 - May 2021</p>
+                                <h4 class="text-xl font-bold text-slate-800 mt-1">Senior Golang Developer</h4>
+                                <p class="text-md font-medium text-slate-600 mb-2">McMakler Gmbh, Germany</p>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Developed new microservices for new feature sets in Go.</li>
+                                    <li>Participated in architecture and tech discussions for new initiatives.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div></div> <!-- Empty column -->
                     </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <p class="font-semibold text-sky-600">December 2017 - September 2019</p>
-                        <h4 class="text-xl font-bold text-slate-800 mt-1">Backend Engineer</h4>
-                        <p class="text-md font-medium text-slate-600 mb-2">Iamsmart Gmbh / Brainwave Hub Gmbh, Germany</p>
-                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                            <li>Developed feature set for a smart heating application using Z-wave protocol.</li>
-                            <li>Developed Backend API for Bewatec Gmbh's "ConnectedCare" hospital infotainment system.</li>
-                        </ul>
+                    
+                    <div class="timeline-item-container md:grid md:grid-cols-2">
+                        <div></div> <!-- Empty column -->
+                        <div class="md:pl-8 relative">
+                            <div class="timeline-dot hidden md:block"></div>
+                            <div class="timeline-arrow hidden md:block" style="left: -0.5rem;"></div>
+                            <div class="timeline-content">
+                                <p class="font-semibold text-sky-600">December 2017 - September 2019</p>
+                                <h4 class="text-xl font-bold text-slate-800 mt-1">Backend Engineer</h4>
+                                <p class="text-md font-medium text-slate-600 mb-2">Iamsmart Gmbh / Brainwave Hub Gmbh</p>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Developed feature set for a smart heating application using Z-wave protocol.</li>
+                                    <li>Developed Backend API for "ConnectedCare" hospital infotainment system.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <p class="font-semibold text-sky-600">November 2016 - December 2017</p>
-                        <h4 class="text-xl font-bold text-slate-800 mt-1">Integration Developer</h4>
-                        <p class="text-md font-medium text-slate-600 mb-2">360Dialog Gmbh, Germany</p>
-                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                            <li>Delivered projects related to Customer Services Integration in Python.</li>
-                             <li>Worked as a BI Analyst building and supporting reporting tools/projects.</li>
-                        </ul>
+                    
+                    <div class="timeline-item-container md:grid md:grid-cols-2">
+                        <div class="md:pr-8 md:text-right relative">
+                            <div class="timeline-dot hidden md:block"></div>
+                            <div class="timeline-arrow hidden md:block" style="right: -0.5rem;"></div>
+                            <div class="timeline-content text-left">
+                                <p class="font-semibold text-sky-600">November 2016 - December 2017</p>
+                                <h4 class="text-xl font-bold text-slate-800 mt-1">Integration Developer</h4>
+                                <p class="text-md font-medium text-slate-600 mb-2">360Dialog Gmbh, Germany</p>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Delivered projects related to Customer Services Integration in Python.</li>
+                                     <li>Worked as a BI Analyst building and supporting reporting tools/projects.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div></div> <!-- Empty column -->
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <p class="font-semibold text-sky-600">May 2011 - June 2014</p>
-                        <h4 class="text-xl font-bold text-slate-800 mt-1">Application Developer</h4>
-                        <p class="text-md font-medium text-slate-600 mb-2">IBM, India</p>
-                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                            <li>Handled end-to-end SDLC of open source applications in an enterprise client management system.</li>
-                        </ul>
+                    
+                    <div class="timeline-item-container md:grid md:grid-cols-2">
+                        <div></div> <!-- Empty column -->
+                        <div class="md:pl-8 relative">
+                            <div class="timeline-dot hidden md:block"></div>
+                            <div class="timeline-arrow hidden md:block" style="left: -0.5rem;"></div>
+                            <div class="timeline-content">
+                                <p class="font-semibold text-sky-600">May 2011 - June 2014</p>
+                                <h4 class="text-xl font-bold text-slate-800 mt-1">Application Developer</h4>
+                                <p class="text-md font-medium text-slate-600 mb-2">IBM, India</p>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Handled end-to-end SDLC of open source applications in an enterprise client management system.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -159,8 +233,8 @@
         <!-- Education & Thesis Section -->
         <section id="education" class="py-16">
             <div class="container mx-auto">
-                <h3 class="section-title">Education & Thesis</h3>
-                <div class="grid md:grid-cols-2 gap-12">
+                <h3 class="section-title text-center">Education & Thesis</h3>
+                <div class="grid md:grid-cols-2 gap-12 mt-12">
                     <!-- Education -->
                     <div>
                         <div class="mb-8">
@@ -197,8 +271,8 @@
 
         <!-- Skills Section -->
         <section id="skills" class="py-16">
-            <h3 class="section-title">Technical Skills</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <h3 class="section-title text-center">Technical Skills</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
                 <div>
                     <h4 class="text-lg font-bold text-slate-800 mb-3">Languages</h4>
                     <ul class="space-y-2">
